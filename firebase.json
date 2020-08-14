@@ -1,0 +1,12 @@
+{
+  "database": {
+    "rules": "c"
+  },
+  "firestore": {
+    "rules": "crud",
+    "indexes": "firebase deploy"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}
