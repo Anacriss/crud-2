@@ -82,18 +82,21 @@ actions: {
     })
   },
 
-  crearUsuario({commit}, {usuario}){
-    console.log(usuario)
-    auth.createUserWithEmailAndPassword(usuario.email,usuario.password)
-    .then(res => {
-      console.log(res)
-    })
-    .catch(Error => {
-      console.log(data)
-      console.log(error)
-    })
-
-
+  crearUsuario({commit}, usuario){
+    auth.createUserWithEmailAndPassword(usuario.email, usuario.password)
+      .then(res => {
+        console.log(res)
+        const usuario = {
+          email: res.user.email,
+          uid: res.user.uid
+        }
+        commit('setUsuario', usuario)
+        router.push('/')
+      })
+      .catch(error => {
+        console.log(error)
+        commit('setError', error)
+      })
   }
 
   },
