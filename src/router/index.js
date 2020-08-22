@@ -19,6 +19,11 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
+    path: '/lista',
+    name: 'Lista',
+    component: () => import(/* webpackChunkName: "editar" */ '../views/Acceso.vue')
+  },
+  {
     path: '/editar/:id',
     name: 'Editar',
     component: () => import(/* webpackChunkName: "editar" */ '../views/Editar.vue')
@@ -32,6 +37,11 @@ Vue.use(VueRouter)
   path: '/registro',
   name: 'Registro',
   component: () => import(/* webpackChunkName: "editar" */ '../views/Registro.vue')
+},
+{
+  path: '/Acceso',
+  name: 'Acceso',
+  component: () => import(/* webpackChunkName: "editar" */ '../views/Acceso.vue')
 }
 ]
 

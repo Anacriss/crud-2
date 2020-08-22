@@ -15,17 +15,17 @@
         >
         <input
             type="password"
-            placeholder="repita su correo"
+            placeholder="repita su contraseña"
             v-model="pass2"
         >
-        <button type="submit">registrar usuario</button>
+        <button type="submit" :disabled='!desactivar'>Registrar</button>
 
     </form>
 </div>
     
 </template>
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 export default {
     name: 'Registro' ,
     data() {
@@ -40,6 +40,13 @@ export default {
    },
    methods:{
        ...mapActions(['crearUsuario'])
+   },
+
+   computed:{
+       ...mapState(['error']),
+       desactivar(){
+           return this.pass1 === this.pass2 && this.pass1.trim() !== ''
+       }
    }
 
 }

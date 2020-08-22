@@ -14,21 +14,21 @@ export default new Vuex.Store({
     error: null
 },
 mutations: {
-    setTareas(state, payload){
-        state.tareas = payload
+    setTareas(state, tareas){
+        state.tareas = tareas
     },
-    setTarea(state, payload){
-      state.tarea = payload
+    setTarea(state, tarea){
+      state.tarea = tarea
   },
   setEliminarTarea(state,payload){
     const tareasFiltradas = stare.tareas.filter(item => item.id !==payload)
     console.log(tareasFiltradas)
   },
-  setUsuario(state, payload){
-    state.usuario = payload
+  setUsuario(state, usuario){
+    state.usuario = usuario
   },
-  setError(state, payload){
-    state.error = payload
+  setError(state, error){
+    state.error = error
   }
 
 },
@@ -97,7 +97,27 @@ actions: {
         console.log(error)
         commit('setError', error)
       })
-  }
+  },
+  ingresoUsuario({commit}, usuario){
+    auth.signInWithEmailAndPassword(usuario.email, usuario.password)
+    .then(res => {
+        console.log(res)
+        const usuario = {
+            email: res.user.email,
+            uid: res.user.uid
+        }
+        commit('setUsuario', usuario)
+        router.push('/')
+    })
+    .catch(error => {
+        console.log(error)
+        commit('setError', error)
+    })
+},
+detectarUsuario({commit}, usuario){
+  commit('setUsuario', usuario)
+}
+ 
 
   },
   modules: {
