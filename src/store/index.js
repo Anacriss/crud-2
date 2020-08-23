@@ -116,7 +116,12 @@ actions: {
 },
 detectarUsuario({commit}, usuario){
   commit('setUsuario', usuario)
+},
+cerrarSesion({commit}){
+  auth.signOut()
+  router.push('/ingreso')
 }
+
  
 
   },
